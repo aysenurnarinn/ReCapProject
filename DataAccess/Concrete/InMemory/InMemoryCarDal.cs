@@ -3,6 +3,7 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 
 namespace DataAccess.Concrete.InMemory
@@ -18,10 +19,6 @@ namespace DataAccess.Concrete.InMemory
                 new Car{CarId=2,BrandId=2,ColorId=2,CarDailyPrice=100000,CarModelYear=2016,CarDescription="Sports Car" },
                 new Car{CarId=3,BrandId=3,ColorId=3,CarDailyPrice=650000,CarModelYear=2021,CarDescription="Jeep Car" }
             };
-        }
-        public List<Car> GetAll()
-        {
-            return _cars;
         }
 
 
@@ -52,7 +49,20 @@ namespace DataAccess.Concrete.InMemory
         {
             return _cars.Where(p => p.CarId == carId).ToList();
         }
-    }
 
+        public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
+        {
+            return _cars;
+        }
+
+
+
+       
+
+        public Car GetById(Expression<Func<Car, bool>> filter)
+        {
+            throw new NotImplementedException();
+        }
+    }
 
 }
